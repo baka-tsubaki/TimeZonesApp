@@ -14,6 +14,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
   data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+  print(data);
   String bgImage = data['isDayTime'] ? 'day.jpg' : 'night.jpg';
   Color textColor = data['isDayTime'] ? Colors.red[300] : Colors.white;
   Color capitalTextColor = data['isDayTime'] ? Colors.black : Colors.white;
@@ -32,7 +33,7 @@ class _HomeState extends State<Home> {
             child: Column(
               children: <Widget> [
                 FlatButton.icon(onPressed: () async {
-                  dynamic result = Navigator.pushNamed(context, '/location');
+                  dynamic result = await Navigator.pushNamed(context, '/location');
                   setState(() {
                     data = {
                       'time' : result['time'],
@@ -40,7 +41,6 @@ class _HomeState extends State<Home> {
                       'flag' : result['flag'],
                       'isDayTime' : result['isDayTime'],
                     };
-                    print(data);
                   });
                 },
                 icon: Icon(

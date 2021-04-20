@@ -25,9 +25,9 @@ class _ChooseLocationState extends State<ChooseLocation> {
       'time': instance.time,
       'isDayTime': instance.isDayTime,
     });
-
   }
-
+    
+  
 
   @override
   Widget build(BuildContext context) {
