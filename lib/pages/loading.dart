@@ -15,20 +15,20 @@ class _LoadingState extends State<Loading> {
     
     WorldTime instance = WorldTime(location: 'Algiers', flag: 'picture', url: 'Africa/Algiers');
 
+
     try{
       await instance.getData();
-    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      Navigator.pushReplacementNamed(context, '/home', arguments: {
       'location': instance.location, 
       'flag': instance.flag,
       'time': instance.time,
       'isDayTime': instance.isDayTime,
     });
     }
-    catch(e){
-      String errorApiGet = 'Please wait while we are collecting data';
-      
+   catch(e){
+      print(e);
+      setupWorldTime();
     }
-    
   }
 
 
@@ -60,7 +60,7 @@ class _LoadingState extends State<Loading> {
                 letterSpacing: 2.0,
               ),
               ),
-        ],
+            ],
       ),
     );
   }
