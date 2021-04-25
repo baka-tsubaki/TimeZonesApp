@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:world_time/services/world_time.dart';
 
 class ChooseLocation extends StatefulWidget {
@@ -8,26 +9,39 @@ class ChooseLocation extends StatefulWidget {
 
 class _ChooseLocationState extends State<ChooseLocation> {
 
+
+
   List<WorldTime> location = [
 
     WorldTime(location: 'London', flag: 'united-kingdom.png', url: 'Europe/London'),
     WorldTime(location: 'Berlin', flag: 'germany.png', url: 'Europe/Berlin'),
     WorldTime(location: 'Paris', flag: 'france.png', url: 'Europe/Paris'),
     WorldTime(location: 'Tokyo', flag: 'japan.png', url: 'Asia/Tokyo'),
+    WorldTime(location: 'Algiers', flag: 'algeria.png', url: 'Africa/Algiers'),
+
   ];
 
-  void updateTime(index) async {
-    WorldTime instance = location[index];
-    await instance.getData();
-    Navigator.pop(context, {
-      'location': instance.location, 
-      'flag': instance.flag,
-      'time': instance.time,
-      'isDayTime': instance.isDayTime,
-    });
-  }
-    
   
+
+  void updateTime(index) async {
+
+    try {
+        WorldTime instance = location[index];
+        await instance.getData();
+        Navigator.pop(context, {
+        'location': instance.location,
+        'flag': instance.flag,
+        'time': instance.time,
+        'isDayTime': instance.isDayTime,
+    });
+    }
+    catch(e){
+      
+    }
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +49,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
       appBar: AppBar(
         title: Text('Choose Location'),
         backgroundColor: Colors.red[300],
-        centerTitle: true,  
+        centerTitle: true,
         elevation: 0.0,
       ),
       body: ListView.builder(

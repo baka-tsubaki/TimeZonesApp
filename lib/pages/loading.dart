@@ -25,6 +25,7 @@ class _LoadingState extends State<Loading> {
       'isDayTime': instance.isDayTime,
     });
     }
+
    catch(e){
       print(e);
       setupWorldTime();
